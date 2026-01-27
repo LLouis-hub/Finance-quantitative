@@ -1,10 +1,8 @@
-# Script RStudio pour analyse d'ETF
-# Installer les packages nécessaires
 packages <- c("quantmod", "tidyverse", "PerformanceAnalytics", "xts", "ggplot2", "corrplot")
 new_packages <- packages[!(packages %in% installed.packages()[,"Package"])]
 if(length(new_packages)) install.packages(new_packages)
 
-# Charger les packages
+
 library(quantmod)
 library(tidyverse)
 library(PerformanceAnalytics)
@@ -14,7 +12,6 @@ library(corrplot)
 
 # ==================== LISTE DES ETF ====================
 
-# Créer des listes organisées par catégorie
 etf_list <- list()
 
 # 1. Géographique / Régions
@@ -73,7 +70,7 @@ cat("Nombre total d'ETF uniques:", length(tous_etf), "\n")
 # ==================== TÉLÉCHARGEMENT DES DONNÉES ====================
 
 # Fonction pour télécharger les données avec gestion d'erreurs
-get_etf_data <- function(symbols, from = "2020-01-01", to = Sys.Date()) {
+get_etf_data <- function(symbols, from = "2014-01-01", to = "2024-01-01") {
   data_list <- list()
   
   for(sym in symbols) {
