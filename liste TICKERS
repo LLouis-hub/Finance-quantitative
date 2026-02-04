@@ -18,51 +18,52 @@ geo_TR <- c(
 
 ###sectoriel (à revoir car énormement de données)
 
-sectors_FR <- c(
-  # Agro / Consommation de base
-  "FR_AGRO_ACC      = EXV4.PA",  # STOXX Europe Food & Beverage
-  # Technologie
-  "FR_TECH_ACC      = EXXT.PA",  # STOXX Europe Technology
-  # Finance
-  "FR_FINANCE_ACC   = EXV1.PA",  # STOXX Europe Financials
-  # Santé
-  "FR_HEALTH_ACC    = EXV3.PA",  # STOXX Europe Health Care
-  # Énergie
-  "FR_ENERGY_ACC    = EXV6.PA",  # STOXX Europe Oil & Gas
-  # Industrie
-  "FR_INDUSTRY_ACC  = EXV5.PA"   # STOXX Europe Industrials
+sectors_TR <- c(
+  sectors_FR <- c(
+    # Agro / Consommation de base
+    "FR_AGRO_ACC      = EXV4.PA",  # STOXX Europe Food & Beverage
+    # Technologie
+    "FR_TECH_ACC      = EXXT.PA",  # STOXX Europe Technology
+    # Finance
+    "FR_FINANCE_ACC   = EXV1.PA",  # STOXX Europe Financials
+    # Santé
+    "FR_HEALTH_ACC    = EXV3.PA",  # STOXX Europe Health Care
+    # Énergie
+    "FR_ENERGY_ACC    = EXV6.PA",  # STOXX Europe Oil & Gas
+    # Industrie
+    "FR_INDUSTRY_ACC  = EXV5.PA"   # STOXX Europe Industrials
+  )
+  
+  sectors_EU <- c(
+    # Agro / Consommation de base
+    "EU_AGRO_ACC      = EXV4.PA",  # Food & Beverage
+    # Technologie
+    "EU_TECH_ACC      = EXXT.PA",
+    # Finance
+    "EU_FINANCE_ACC   = EXV1.PA",
+    # Santé
+    "EU_HEALTH_ACC    = EXV3.PA",
+    # Énergie
+    "EU_ENERGY_ACC    = EXV6.PA",
+    # Industrie
+    "EU_INDUSTRY_ACC  = EXV5.PA"
+  )
+  
+  sectors_US <- c(
+    # Agro / Consommation de base
+    "US_AGRO_TR      = XLP",  # Consumer Staples
+    # Technologie
+    "US_TECH_TR      = XLK",
+    # Finance
+    "US_FINANCE_TR   = XLF",
+    # Santé
+    "US_HEALTH_TR    = XLV",
+    # Énergie
+    "US_ENERGY_TR    = XLE",
+    # Industrie
+    "US_INDUSTRY_TR  = XLI"
+  )
 )
-
-sectors_EU <- c(
-  # Agro / Consommation de base
-  "EU_AGRO_ACC      = EXV4.PA",  # Food & Beverage
-  # Technologie
-  "EU_TECH_ACC      = EXXT.PA",
-  # Finance
-  "EU_FINANCE_ACC   = EXV1.PA",
-  # Santé
-  "EU_HEALTH_ACC    = EXV3.PA",
-  # Énergie
-  "EU_ENERGY_ACC    = EXV6.PA",
-  # Industrie
-  "EU_INDUSTRY_ACC  = EXV5.PA"
-)
-
-sectors_US <- c(
-  # Agro / Consommation de base
-  "US_AGRO_TR      = XLP",  # Consumer Staples
-  # Technologie
-  "US_TECH_TR      = XLK",
-  # Finance
-  "US_FINANCE_TR   = XLF",
-  # Santé
-  "US_HEALTH_TR    = XLV",
-  # Énergie
-  "US_ENERGY_TR    = XLE",
-  # Industrie
-  "US_INDUSTRY_TR  = XLI"
-)
-
 
 
 
@@ -129,3 +130,9 @@ asset_TR <- c(
 )
 
 
+all_tickers <- c(asset_TR, style_TR, size_TR, geo_TR, sectors_TR)
+length(all_tickers)
+tickers_yahoo <- unname(all_tickers)
+
+### utiliser quantmod si exctraction de cette liste (avec un bachage)
+getSymbols(tickers_yahoo, src = "yahoo")
