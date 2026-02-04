@@ -10,7 +10,7 @@ library(xts)
 library(ggplot2)
 library(corrplot)
 
-# ==================== LISTE DES ETF ====================
+# ==================== LISTE DES ETF ==================== (tout ca on ne prend plus car ETF mais garder si jamais) 
 
 etf_list <- list()
 
