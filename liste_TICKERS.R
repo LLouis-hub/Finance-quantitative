@@ -18,25 +18,25 @@ geo_TR <- c(
 
 ###sectoriel (à revoir car énormement de données)
 
-sectors_TR <- c(
-  sectors_FR <- c(
+sectors_TR <- list(
+  sectors_FR = c(
     # Agro / Consommation de base
-    "FR_AGRO_ACC      = EXV4.PA",  # STOXX Europe Food & Beverage
+    "FR_AGRO_ACC      = EXV4.PA",
     # Technologie
-    "FR_TECH_ACC      = EXXT.PA",  # STOXX Europe Technology
+    "FR_TECH_ACC      = EXXT.PA",
     # Finance
-    "FR_FINANCE_ACC   = EXV1.PA",  # STOXX Europe Financials
+    "FR_FINANCE_ACC   = EXV1.PA",
     # Santé
-    "FR_HEALTH_ACC    = EXV3.PA",  # STOXX Europe Health Care
+    "FR_HEALTH_ACC    = EXV3.PA",
     # Énergie
-    "FR_ENERGY_ACC    = EXV6.PA",  # STOXX Europe Oil & Gas
+    "FR_ENERGY_ACC    = EXV6.PA",
     # Industrie
-    "FR_INDUSTRY_ACC  = EXV5.PA"   # STOXX Europe Industrials
-  )
+    "FR_INDUSTRY_ACC  = EXV5.PA"
+  ),
   
-  sectors_EU <- c(
+  sectors_EU = c(
     # Agro / Consommation de base
-    "EU_AGRO_ACC      = EXV4.PA",  # Food & Beverage
+    "EU_AGRO_ACC      = EXV4.PA",
     # Technologie
     "EU_TECH_ACC      = EXXT.PA",
     # Finance
@@ -47,11 +47,11 @@ sectors_TR <- c(
     "EU_ENERGY_ACC    = EXV6.PA",
     # Industrie
     "EU_INDUSTRY_ACC  = EXV5.PA"
-  )
+  ),
   
-  sectors_US <- c(
+  sectors_US = c(
     # Agro / Consommation de base
-    "US_AGRO_TR      = XLP",  # Consumer Staples
+    "US_AGRO_TR      = XLP",
     # Technologie
     "US_TECH_TR      = XLK",
     # Finance
@@ -65,6 +65,10 @@ sectors_TR <- c(
   )
 )
 
+# Accéder aux données :
+sectors_TR$sectors_FR
+sectors_TR$sectors_EU
+sectors_TR$sectors_US
 
 
 ###capitalisation (modifié avec les ETFs donc a justifier)
