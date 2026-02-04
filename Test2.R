@@ -8,9 +8,20 @@ library(tidyverse)
 ###############################################
 
 # Liste unique de tickers Yahoo (à adapter avec notre liste finale)
-tickers <- c(
- geo_TR # exemple avec tickers div_geo total return
+# exemple avec cette liste
+indices_FR <- c(
+  CAC40_TR = "^CACGR",
+  SBF120   = "^SBF120"
 )
+
+indices_US <- c(
+  SP500_TR = "^SP500TR"
+)
+
+# Regroupement
+indices_all <- c(indices_FR, indices_US)
+tickers <- unname(indices_all)  ### permet de garder uniquement "^SP500TR" et non plus :" SP500_TR = "^SP500TR""
+
 
 start_date <- "2014-01-01"
 end_date   <- "2024-12-31"
