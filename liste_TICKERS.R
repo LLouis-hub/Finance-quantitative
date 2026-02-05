@@ -18,57 +18,31 @@ geo_TR <- c(
 
 ###sectoriel (à revoir car énormement de données)
 
-sectors_TR <- list(
-  sectors_FR = c(
-    # Agro / Consommation de base
-    "FR_AGRO_ACC      = EXV4.PA",
-    # Technologie
-    "FR_TECH_ACC      = EXXT.PA",
-    # Finance
-    "FR_FINANCE_ACC   = EXV1.PA",
-    # Santé
-    "FR_HEALTH_ACC    = EXV3.PA",
-    # Énergie
-    "FR_ENERGY_ACC    = EXV6.PA",
-    # Industrie
-    "FR_INDUSTRY_ACC  = EXV5.PA"
-  ),
+sectors_TR <- c(
+  # France
+  FR_AGRO_ACC = "EXV4.PA",
+  FR_TECH_ACC = "EXXT.PA",
+  FR_FINANCE_ACC = "EXV1.PA",
+  FR_HEALTH_ACC = "EXV3.PA",
+  FR_ENERGY_ACC = "EXV6.PA",
+  FR_INDUSTRY_ACC = "EXV5.PA",
   
-  sectors_EU = c(
-    # Agro / Consommation de base
-    "EU_AGRO_ACC      = EXV4.PA",
-    # Technologie
-    "EU_TECH_ACC      = EXXT.PA",
-    # Finance
-    "EU_FINANCE_ACC   = EXV1.PA",
-    # Santé
-    "EU_HEALTH_ACC    = EXV3.PA",
-    # Énergie
-    "EU_ENERGY_ACC    = EXV6.PA",
-    # Industrie
-    "EU_INDUSTRY_ACC  = EXV5.PA"
-  ),
+  # Europe
+  EU_AGRO_ACC = "EXV4.PA",
+  EU_TECH_ACC = "EXXT.PA",
+  EU_FINANCE_ACC = "EXV1.PA",
+  EU_HEALTH_ACC = "EXV3.PA",
+  EU_ENERGY_ACC = "EXV6.PA",
+  EU_INDUSTRY_ACC = "EXV5.PA",
   
-  sectors_US = c(
-    # Agro / Consommation de base
-    "US_AGRO_TR      = XLP",
-    # Technologie
-    "US_TECH_TR      = XLK",
-    # Finance
-    "US_FINANCE_TR   = XLF",
-    # Santé
-    "US_HEALTH_TR    = XLV",
-    # Énergie
-    "US_ENERGY_TR    = XLE",
-    # Industrie
-    "US_INDUSTRY_TR  = XLI"
-  )
+  # USA
+  US_AGRO_TR = "XLP",
+  US_TECH_TR = "XLK",
+  US_FINANCE_TR = "XLF",
+  US_HEALTH_TR = "XLV",
+  US_ENERGY_TR = "XLE",
+  US_INDUSTRY_TR = "XLI"
 )
-
-# Accéder aux données :
-sectors_TR$sectors_FR
-sectors_TR$sectors_EU
-sectors_TR$sectors_US
 
 
 ###capitalisation (modifié avec les ETFs donc a justifier)
