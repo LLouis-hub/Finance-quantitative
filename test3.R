@@ -16,7 +16,7 @@ tickers <- c(
   CAC40 = "^FCHI",
   SP500 = "^GSPC",
   DAX = "^GDAXI",          # Indice allemand
-  NIKKEI = "^N225"         # Indice japonais
+  NIKKEI = "^N225",         # Indice japonais
   EM = "EEM"            
 )
 
