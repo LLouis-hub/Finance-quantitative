@@ -36,39 +36,81 @@ start_date <- "2014-01-01"
 end_date   <- "2024-12-31"
 
 ###############################################
-# 2. EXTRACTION DES PRIX AJUSTÉS
+# 2. EXTRACTION DES PRIX AVEC GESTION DES NA
 ###############################################
 
-# Téléchargement des données
-getSymbols(
-  tickers,
-  src   = "yahoo",
-  from  = start_date,
-  to    = end_date,
-  auto.assign = TRUE
-)
+# Fonction pour télécharger avec gestion robuste des erreurs
+download_ticker <- function(ticker_symbol, ticker_name) {
+  tryCatch({
+    cat(paste("Téléchargement de", ticker_name, "...\n"))
+    
+    # Téléchargement avec réessai automatique
+    data <- getSymbols(
+      ticker_symbol,
+      src = "yahoo",
+      from = start_date,
+      to = end_date,
+      auto.assign = FALSE,
+      warnings = FALSE
+    )
+    
+    # Récupération du prix ajusté
+    price <- Ad(data)
+    colnames(price) <- ticker_name
+    
+    return(price)
+  }, error = function(e) {
+    message(paste("Erreur pour", ticker_name, ":", e$message))
+    return(NULL)
+  })
+}
 
-# Vérification des objets créés
-print(ls())
-
-# Extraction des prix de clôture ajustés
+# Téléchargement de tous les tickers
 prices_list <- list()
 
-for(ticker in names(tickers)) {
-  # Vérifier si l'objet existe
-  if(exists(ticker)) {
-    prices_list[[ticker]] <- Ad(get(ticker))
-  } else {
-    message(paste("Avertissement :", ticker, "n'a pas été téléchargé"))
+for(i in seq_along(tickers)) {
+  ticker_symbol <- tickers[i]
+  ticker_name <- names(tickers)[i]
+  
+  price_data <- download_ticker(ticker_symbol, ticker_name)
+  
+  if(!is.null(price_data)) {
+    prices_list[[ticker_name]] <- price_data
   }
+}
+
+# Vérifier qu'on a au moins 2 séries
+if(length(prices_list) < 2) {
+  stop("Pas assez de données téléchargées. Essayez d'autres tickers.")
 }
 
 # Combiner toutes les séries
 prices <- do.call(merge, prices_list)
-colnames(prices) <- names(tickers)
 
-# Suppression des lignes avec NA
-prices <- na.omit(prices)
+# Inspection des NA
+cat("\n=== INSPECTION DES DONNÉES ===\n")
+cat("Dimensions avant nettoyage:", dim(prices), "\n")
+cat("Nombre total de NA:", sum(is.na(prices)), "\n")
+cat("NA par colonne:\n")
+print(colSums(is.na(prices)))
+
+# STRATÉGIE 1: Supprimer les lignes avec NA (si peu de NA)
+# prices_clean <- na.omit(prices)
+
+# STRATÉGIE 2: Imputation des NA (mieux pour les séries financières)
+# Remplir les NA par la dernière valeur non-NA (méthode "locf")
+prices_clean <- na.locf(prices, na.rm = FALSE)
+
+# STRATÉGIE 3: Imputation linéaire (alternative)
+# prices_clean <- na.approx(prices, na.rm = FALSE)
+
+# Vérification finale
+cat("\nDimensions après nettoyage:", dim(prices_clean), "\n")
+cat("NA restants:", sum(is.na(prices_clean)), "\n")
+
+# Visualisation des séries
+plot(prices_clean, main = "Séries de prix ajustés")
+grid()
 
 ###############################################
 # 3. CALCUL DES RENDEMENTS LOG
