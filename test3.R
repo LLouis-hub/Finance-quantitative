@@ -17,7 +17,7 @@ tickers <- c(
   SP500 = "^GSPC",
   DAX = "^GDAXI",          # Indice allemand
   NIKKEI = "^N225"         # Indice japonais
-  # EM = "EEM"             # Décommenter si besoin
+  EM = "EEM"            
 )
 
 start_date <- "2019-01-01"  # Période plus courte pour éviter les NA
