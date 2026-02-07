@@ -196,10 +196,10 @@ minvar_risk   <- sqrt(t(w_minvar) %*% Sigma_f %*% w_minvar)
 ###############################################
 
 # Création du graphique
-ggplot(frontier, aes(x = return, y = risk)) +
+ggplot(frontier, aes(x = risk, y = return)) +
   geom_line(color = "blue", linewidth = 1) +
   geom_point(
-    aes(x = minvar_return, y = minvar_risk),
+    aes(x = minvar_risk, y = minvar_return),
     color = "red", size = 3
   ) +
   labs(
