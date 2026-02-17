@@ -112,7 +112,7 @@ abline(h = 0, col = "red")
   
   # Création du graphique
   p <- ggplot(df_plot, aes(x = Volatility, y = Return)) +
-    geom_line(color = "blue", linewidth = 1) +
+  geom_point(color = "blue")  # 
     # Ajouter le point du portefeuille optimal (optionnel)
     geom_point(data = df_plot[optimal_idx,], 
                aes(x = Volatility, y = Return), 
