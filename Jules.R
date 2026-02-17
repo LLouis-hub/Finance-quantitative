@@ -1,4 +1,4 @@
-> # Installation des packages (à exécuter une seule fois)
+# Installation des packages (à exécuter une seule fois)
 # install.packages("readxl")
 # install.packages("ggplot2")
 # install.packages("dplyr")  # Optionnel mais utile
@@ -40,10 +40,12 @@ print(dim(data_clean))
 # Vérifiez vos rendements moyens
 print(mu)  # Devrait montrer des valeurs négatives
 
-# Visualisez les séries temporelles
-plot(data_clean[[2]], type = "l", col = "blue", 
-     main = "Évolution des prix")
-lines(data_clean[[3]], type = "l", col = "red")
+# Graphique des prix
+par(mfrow = c(2, 1))
+plot(data_clean[[2]], type = "l", main = "Prix Actif 1")
+plot(data_clean[[3]], type = "l", main = "Prix Actif 2")
+
+
 # 4. CALCUL DES RENDEMENTS
 cat("\n=== CALCUL DES RENDEMENTS ===\n")
 # S'assurer qu'il y a assez de données
@@ -56,7 +58,10 @@ returns <- data.frame(
   r1 = diff(log(data_clean[[2]])),
   r2 = diff(log(data_clean[[3]]))
 )
-  
+  # Graphique des rendements
+plot(returns$r1, type = "l", main = "Rendements Actif 1")
+abline(h = 0, col = "red")
+     
   # Supprimer les éventuelles valeurs manquantes
   returns <- na.omit(returns)
   
